@@ -1,4 +1,5 @@
 import sys
+import os
 
 from django.test import TestCase
 from django.test.utils import override_settings
@@ -6,8 +7,6 @@ from django.core.management import call_command
 from django.forms.models import model_to_dict
 
 from ..models import Place
-
-from django.contrib.gis.geos import Point
 
 
 class DevNull(object):
@@ -24,9 +23,9 @@ class GeocoderCsvImportTests(TestCase):
         sys.stderr = DevNull()
 
         # Paths to the various sample data files
-        csv_dir = 'geocoder/tests/test_data/'
-        self.os_locator_data_filename       = csv_dir + 'OS_Locator2013_1_OPEN_sample.txt'
-        self.os_50k_gazetteer_data_filename = csv_dir + '50kgaz2013_sample.txt'
+        csv_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_data')
+        self.os_locator_data_filename       = os.path.join(csv_dir, 'OS_Locator2013_1_OPEN_sample.txt')
+        self.os_50k_gazetteer_data_filename = os.path.join(csv_dir, '50kgaz2013_sample.txt')
 
     def tearDown(self):
         sys.stderr = self.old_stderr

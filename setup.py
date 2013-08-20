@@ -12,7 +12,7 @@ def read_file(filename):
 
 setup(
     name="django-os-geocoder",
-    version='0.1.5',
+    version='0.1.6',
     description='A Django app that lets you load Ordnance Survey data and use it to find places.',
     long_description=read_file('README.rst'),
     author='mySociety',

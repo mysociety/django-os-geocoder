@@ -1,6 +1,22 @@
 # Geocoder
 
-This is a Django app that lets you load Ordnance Survey data and use it to find places. It was written for the NHS [Citizen Connect](https://github.com/mysociety/citizenconnect) project.
+This is a Django app that lets you load Ordnance Survey data and use it to find places.
+
+A list of `Places` from the Ordnance Survey is stored in a spatial database, and a url is provided to query them by name and return a JSON response containing matching places. Useful for autocompleting inputs that take town, city or road names.
+
+In addition, the places are filtered by a series of bounding boxes, so that only places within the supplied boxes are returned.
+
+
+## Prerequisites
+* A [[GeoDjango][https://docs.djangoproject.com/en/dev/ref/contrib/gis/tutorial/#introduction] project (Note, this has only been tested with Django 1.4.5 and a PostGIS database)
+
+
+## Installation
+1. Add `geocoder` to your `INSTALLED_APPS` list in settings.py
+2. Import the geocoder ajax url into your project's urls.py
+3. Set `GEOCODER_BOUNDING_BOXES` to include one or more bounding boxes
+3. Run `python manage.py syncdb`
+4. Restart your web server, if necessary.
 
 
 ## Data
